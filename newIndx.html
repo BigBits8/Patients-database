@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sjukanmälan</title>
+    <link rel="stylesheet" href="grupprojekt.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,200&display=swap" rel="stylesheet">
+
+<script>
+  		
+    var savedRndNr = [];//array för att spara random nummer 
+		var savedText = [];//array för att spara inmatade string
+
+		//Skapar en klass med attributer
+		class Patient {
+			constructor(firstName, lastName, age, symptom) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+				this.age = age;
+				this.symptom = symptom;
+			}
+
+			//Metod som skriver ut attribut
+			toString() {
+				return "Patient: " + this.firstName + ", " + this.lastName + "." +
+					"<br>" + "Ålder: " + this.age + "." + "<br>" +
+					"Patient nummer: " + this.getNumber() + "." + "<br>" +
+					"Patient har symptom: " + this.symptom + ".";
+			}
+
+			//Funktion för att generera random nummer
+			getNumber() {
+				var isGoing = true;
+				var randomnumber;
+
+        //medans random nummer är ett nummer och random nummer inte redan finns i array randomnumer
+			while(isGoing) {
+				if (Number.isInteger(randomnumber) && !savedRndNr.includes(randomnumber)) {
+					savedRndNr.push(randomnumber);//push randomnumer i savvedRndNr
+					isGoing = false;//om inte true böra om
+				}
+        //räknare för randomnumer
+					randomnumber = Math.floor(Math.random() * 100);
+				}
+				return randomnumber;
+			}
+		}
+
+    //funktion för han hämnta input
+		function läggTillNyPatient() {
+			let newName = document.getElementById('input1').value;
+			let newLastName = document.getElementById('input2').value;
+			let newAge = document.getElementById('input3').value;
+			let newSymptom = document.getElementById('input5').value;
+      //push elemet till array savedText
+			savedText.push(new Patient(newName, newLastName, newAge, newSymptom).toString());
+			skrivUtAllaPatienter();
+			 emptyInputs();
+		}
+
+    //Funktion som skriver ut alla personer skapade i arrayen patients
+		function skrivUtAllaPatienter() {
+			document.getElementById('output').innerHTML = "";
+
+			savedText.forEach(item => {
+				document.getElementById('output').innerHTML += item + "<br>";
+			});
+
+		}
+
+    //funktion för att validera inmatad information från användaren
+		function missInput() {
+			var name1 = document.getElementById('input1').value;
+			var name2 = document.getElementById('input2').value;
+			var age = document.getElementById('input3').value;
+			var symp = document.getElementById('input5').value;
+			//om namn1 eller namn2 saknas alert window
+			if (name1 === "" && name2 === "") {
+				window.alert("Du har missat att fylla i Namn eller Efternamn!");
+			}
+			if (age === "") {
+				window.alert("Du har inte anget din ålder!");
+			}
+			if (symp === "") {
+				window.alert("Vi behöver mer detaljer för att kunna hjälpa dig...")
+			}
+			läggTillNyPatient();
+		}
+
+		//Tömmer alla input fälten
+		function emptyInputs() {
+				document.getElementById('input1').value = "";
+				document.getElementById('input2').value = "";
+				document.getElementById('input3').value = "";
+				document.getElementById('input5').value = "";
+				}
+</script>
+
+</head>
+<body>
+    <header>
+        <h1>Sjukanmälan</h1><img src="cross.png">
+		
+        <h2>Registrera patient</h2>
+    </header>
+    <form action="">
+        <div id="wrapper">
+            <div id= "row">
+                <div>
+                    <p class="rub">Personuppgifter</p>
+                    <input type="text" id="input1" placeholder="Namn">
+                    <br>
+                    <br>
+                    <input type="text" id="input2" placeholder="Efternamn">
+                </div>
+                <div>
+                    <p class="rub">Ålder</p>
+                    <input type="number" id="input3" placeholder="Ange ålder">
+        
+                    <p class="rub">Patientnummer</p>
+                    <input type="number" id="input4" placeholder="Ange patientnummer">
+        
+                    <p class="rub">Symptom</p>
+                    <input type="text" id="input5" placeholder="Ange symptom">
+                    <br>
+                    <div class="button-container">
+                        <button type="button" onclick="läggTillNyPatient();">Lägg till patient</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+            <div id="divOutput">
+                <hr>
+                <p id="output"></p>
+            </div>
+
+
+        </div>
+</body>
+<script>
+    let patients = [];
+
+    skrivUtAllaPatienter();
+</script>
+
+</html>

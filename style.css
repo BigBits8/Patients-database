@@ -1,0 +1,74 @@
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    background-color: #D1EBF7;
+    /*text-align: center;*/
+    /**/
+    margin-left:100px;
+}
+/*Lägger out put åt sidan*/
+#wrapper{
+    display:inline-flex;
+    /*border: 1px solid red;*/
+    margin-left: 120px;
+}
+
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    line-height: 48px;
+    font-weight: 900;
+    margin: 0;
+    margin-top: 60px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+    padding: 0 0 24px;
+}
+
+/*ikon*/
+img{
+    
+    width: 50px;
+    height: 50px;
+    margin-left:700px;
+    
+    margin-top: 50px;
+}
+/*Förstorning av bokstäver*/
+.rub{
+    font-weight: 1000;
+}
+
+.bold{
+    font-weight: 1000;
+    display: inline;
+}*/
+
+div.button-container {
+    margin: 40px 0;
+}
+/*Större input*/
+#input5{
+    width:200px;
+    height: 50px;
+    font-size: 14pt;
+    
+}
+
+/*#row{
+    border: 1px solid black;
+}*/
+
+#divOutput{
+    width: 1000px;
+    /*border: 1px solid black;*/
+    margin-left: 100px;
+}
+
+.footer{
+    width:100%;
+    text-align: center;
+}

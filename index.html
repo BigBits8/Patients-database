@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dagbok</title>
+    <link rel="stylesheet" href="styles.css" />
+
+
+    <script>
+        //Skapar en klass Patient
+        class Patient {
+            constructor(namn, efternamn, ålder, symptom, patientnummer) {
+                this.namn = namn;
+                this.efternamn = efternamn;
+                this.ålder = ålder;
+                this.symptom = symptom;
+                this.patientnummer = patientnummer;
+            }
+            toString() {
+                return "";
+            }
+        }
+
+        //Funktion vid Button tryck
+        function läggTillEnNyPatient() {
+            let newNamn = document.getElementById("namn").value;
+            let newEfternamn = document.getElementById("efternamn").value;
+            let newÅlder = document.getElementById("ålder").value;
+            let newSymptom = document.getElementById("symptom").value;
+            let newPatientnummer = document.getElementById("patientnummer").value;
+
+            patienter.push(new Patient(newNamn, newEfternamn, newÅlder, newSymptom, newPatientnummer));
+
+            skrivUtAllaPatienter();
+        }
+
+        function skrivUtAllaPatienter() {
+            document.getElementById("output").innerHTML = "";
+
+            for (let i = 0; i < patienter.length; i++) {
+                document.getElementById("output").innerHTML += patienter[i].toString() + "<br>";
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h2> Mata in information om patient</h2>
+    <label for="namnInput">Namn:</label>
+    <br>
+    <input type="text" id="namnInput" value="">
+    <br>
+    <label for="efternamnInput:">Efternamn:</label>
+    <br>
+    <input type="text" id="efternamnInput" value="">
+    <br>
+    <label for="ålderInput">Ålder:</label>
+    <br>
+    <input type="text" id="ålderInput" value="">
+    <br>
+    <label for="symptomInput">Symptom:</label>
+    <br>
+    <input type="text" id="symptomInput" value="">
+    <br>
+    <label for="patientnummerInput">Patient Nummer:</label>
+    <br>
+    <input type="text" id="patientnummerInput" value="">
+    <br>
+    <br>
+    <button type="button" onclick="Skicka();">Skicka</button>
+
+    <p id="output"></p>
+
+</body>
+<script>
+    let patienter = [];
+
+    //Pushar in 5 st patienter information till arrayen
+    patienter.push(new Patient());
+    patienter.push(new Patient());
+    patienter.push(new Patient());
+    patienter.push(new Patient());
+    patienter.push(new Patient());
+
+    skrivUtAllaPatienter();
+</script>
+
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediCare</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,wght@1,200&display=swap" rel="stylesheet">
+<!--KÄLLKOD AV MOHAMMED MUSTAFA + grupp-->
+<script>
+    	var savedRndNr = [];//array för att spara random nummer 
+		var savedText = [];//array för att spara inmatade string
+
+		//Skapar en klass med attributer
+		class Patient {
+			constructor(firstName, lastName, age, symptom) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+				this.age = age;
+				this.symptom = symptom;
+			}
+			//Metod som skriver ut attribut
+			toString() {
+				return "<p class='bold'>Patient: </p>" + this.firstName + ", " + this.lastName + "." +
+					"<br>" + "<p class='bold'>Ålder: </p>" + this.age + "." + "<br>" +
+					"<p class='bold'>Patient nummer: </p>" + this.getNumber() + "." + "<br>" +
+					"<p class='bold'>Patient har symptom: </p>" + this.symptom + "." + "<br>" + "<hr>";
+			}
+
+			//Metod för att generera random nummer
+			getNumber() {
+				var isGoing = true;
+				var randomnumber;
+
+        //medans random nummer är ett nummer och random nummer inte redan finns i array randomnumer
+			while(isGoing) {
+				if (Number.isInteger(randomnumber) && !savedRndNr.includes(randomnumber)) {
+					savedRndNr.push(randomnumber);//push randomnumer i savvedRndNr
+					isGoing = false;//om inte true böra om
+				}
+        //räknare för randomnumer
+					randomnumber = Math.floor(Math.random() * 100);
+				}
+				return randomnumber;
+			}
+		}
+
+    //funktion för han hämnta input
+		function läggTillNyPatient() {
+			var error = false;
+			let newName = document.getElementById('input1').value;
+			let newLastName = document.getElementById('input2').value;
+			let newAge = document.getElementById('input3').value;
+			let newSymptom = document.getElementById('input5').value;
+
+			//Kollar om inputfälten är tomma, om tomma skriv ut ett meddelande-returnera error är 
+			if ( newName === "" || newLastName === "" || newAge === "") {
+				window.alert("Du har missat att fylla i namn, efternamn eller ålder!");
+				return error = true;
+			}
+			
+			if(error == false){
+      //push elemet till array savedText
+			savedText.push(new Patient(newName, newLastName, newAge, newSymptom).toString());
+			skrivUtAllaPatienter();
+			emptyInputs();
+			}
+		}
+
+    //Funktion som skriver ut alla personer skapade i arrayen patients
+		function skrivUtAllaPatienter() {
+			document.getElementById('output').innerHTML = "";
+			savedText.forEach(item => {
+				document.getElementById('output').innerHTML += item + "<br>";
+			});
+		}
+		//Tömmer alla input fälten
+		function emptyInputs() {
+				document.getElementById('input1').value = "";
+				document.getElementById('input2').value = "";
+				document.getElementById('input3').value = "";
+				document.getElementById('input5').value = "";
+				}
+</script>
+</head>
+<body>
+    <header>
+        <h1>MediCare</h1><img src="cross.png">
+		
+        <h2>Patient Registrering</h2>
+    </header>
+    <form action="">
+        <div id="wrapper">
+            <div id= "row">
+                <div><!--Inputs labels och knappar-->
+                    <p class="rub">Personuppgifter</p>
+                    <input type="text" id="input1" placeholder="Namn">
+                    <br>
+                    <br>
+                    <input type="text" id="input2" placeholder="Efternamn">
+                </div>
+                <div>
+                    <p class="rub">Ålder</p>
+                    <input type="number" id="input3" placeholder="Ange ålder">
+        
+                    <p class="rub">Symptom</p>
+                    <input type="text" id="input5" placeholder="Ange symptom">
+                    <br>
+                    <button type="button" onclick="läggTillNyPatient()">Lägg till patient</button>
+					<br>				
+                </div>
+            </div>
+            </form>
+            <div id="divOutput">
+                <hr>
+                <p id="output"></p>								
+            </div>						
+        </div>
+</body>
+<script>
+
+    skrivUtAllaPatienter();
+</script>
+
+</html>

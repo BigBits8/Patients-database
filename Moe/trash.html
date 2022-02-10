@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sjukanmälan</title>
+	<link rel="stylesheet" href="styles.css">
+
+	<script>
+		class Patient {
+			constructor(firstName, lastName, age, symptom, number) {
+				this.firstName = firstName;
+				this.lastName = lastName;
+				this.age = age;
+				this.symptom = symptom;
+				//Nummerordning på patientnummer
+				this.number = number;
+			}
+
+			toString(number) {
+				
+				return "Patient: " + this.firstName + "," + this.lastName + "." +
+					"<br>" + "Ålder: " + this.age + "." + "<br>" +
+					//Nummerordning på patientnummer
+					"Patient nummer: " + number + "." + "<br>" +
+					"Patient har symptom: " + this.symptom + ".";
+			}
+
+			getNumber() {
+				var minNumber = 10;
+				var maxNumber = 10;
+				var randomnumber = Math.floor(Math.random()* 100);
+
+				return randomnumber;
+			}
+
+		}
+
+		function läggTillNyPatient() {
+			let newName = document.getElementById('input1').value;
+			let newLastName = document.getElementById('input2').value;
+			let newAge = document.getElementById('input3').value;
+			let newSymptom = document.getElementById('input5').value;
+
+			patients.push(new Patient(newName, newLastName, newAge, newSymptom));
+
+			skrivUtAllaPatienter();
+			emptyInputs()
+		}
+
+		function skrivUtAllaPatienter() {
+			document.getElementById('output').innerHTML = "";
+			let number;
+			
+			for (let i = 0; i < patients.length; i++) {
+				number = i+1;
+				document.getElementById('output').innerHTML += patients[i]
+				//Nummerordning på patientnummer
+				.toString(i+1) + "<br>";
+			}
+
+		}
+
+		function missInput() {
+			var name1 = document.getElementById('input1').value;
+			var name2 = document.getElementById('input2').value;
+			var age = document.getElementById('input3').value;
+			var symp = document.getElementById('input5').value;
+			if (name1 === "" && name2 === "") {
+				window.alert("Du har missat att fylla i Namn eller Efternamn!");
+			}
+			if (age === "") {
+				window.alert("Du har inte anget din ålder!");
+			}
+			if (symp === "") {
+				window.alert("Vi behöver mer detaljer för att kunna hjälpa dig...")
+			}
+			läggTillNyPatient();
+		}
+		function emptyInputs() {
+
+				document.getElementById('input1').value = "";
+				document.getElementById('input2').value = "";
+				document.getElementById('input3').value = "";
+				document.getElementById('input5').value = "";
+				}
+	</script>
+</head>
+
+<body>
+	<header>
+		<h1>Sjukanmälan</h1>
+		<h2>Registrera patient</h2>
+	</header>
+	<div>
+		<div>
+			<p>Person uppgifter</p>
+			<input type="text" id="input1" placeholder="Namn">
+			<input type="text" id="input2" placeholder="Efternamn">
+		</div>
+		<div>
+			<p>Ålder</p>
+			<input type="number" id="input3">
+
+			<p>Symptom</p>
+			<input type="text" id="input5">
+			<br>
+			<br>
+			<div class="button-container">
+				<button type="button" onclick="missInput();">Lägg till patient</button>
+			</div>
+		</div>
+		<p id="output"></p>
+</body>
+<script>
+	let patients = [];
+
+	//skrivUtAllaPatienter();
+</script>
+
+</html>
+
+
