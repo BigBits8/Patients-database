@@ -7,7 +7,7 @@ register and check patients in a database.
 
 HOW WAS IT MADE?
 
-The project is built with HTML, CSS and JAVASCRIPT.
+The project is built with HTML, CSS and JavaScript.
 
 Togheter with a group of three students we made this project for a
 javascript course assignment.
