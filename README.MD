@@ -2,14 +2,14 @@
 
 WHAT IS IT?
 
-This project is for hospitals, useing this app to
+#This project is for hospitals, using this app to
 register and check patients in a database. 
 
 HOW WAS IT MADE?
 
-The project is built with HTML, CSS and JavaScript.
+#The project is built with HTML, CSS and JavaScript.
 
-This project was made with a group of 4 sudents as a school project.
+#This project was made with a group of 4 sudents as a school project.
 
 
 
